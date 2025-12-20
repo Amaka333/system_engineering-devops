@@ -1,16 +1,13 @@
 #!/usr/bin/env bash
-# This script displays a message and stays alive when it gets a SIGTERM signal
+# This script displays "To infinity and beyond" indefinitely
+# and responds to SIGTERM with "I am invincible!!!"
 
-# 1. Tell the script what to say when someone tries to stop it
+# Define the trap directly
 trap 'echo "I am invincible!!!"' SIGTERM
 
-# 2. Start the infinite loop
+# Infinite loop
 while true
 do
     echo "To infinity and beyond"
-    # This part is the magic fix: 
-    # It puts the sleep in the background (&) 
-    # and 'waits' for it. 'wait' can be interrupted by signals instantly!
-    sleep 2 &
-    wait $!
+    sleep 2
 done
